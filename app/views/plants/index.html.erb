@@ -1,37 +1,13 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Plants</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Plant</th>
-      <th>Type</th>
-      <th>Picture</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @plants.each do |plant| %>
-      <tr>
-        <td><%= plant.name %></td>
-        <td><%= plant.plant %></td>
-        <td><%= plant.type %></td>
-        <td><%= plant.picture %></td>
-        <td><%= plant.location %></td>
-        <td><%= plant.date %></td>
-        <td><%= link_to 'Show', plant %></td>
-        <td><%= link_to 'Edit', edit_plant_path(plant) %></td>
-        <td><%= link_to 'Destroy', plant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @plants.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |plant| %>
+      <div class="col-md-4">
+        <%= image_tag plant.picture_url, width: '100%' if plant.picture.present?%>
+        <h4><%= link_to plant.name, plant %></h4>
+        <%= plant.type %>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Plant', new_plant_path %>
+  </div>
+<% end %>

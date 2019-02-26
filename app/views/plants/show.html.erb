@@ -1,34 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @plant.name %>
-</p>
+<div class="row">
+  <div class="col-md-9">
+    <%= image_tag(@plant.picture_url, width: '100%') if @plant.picture.present? %>
+  </div>
 
-<p>
-  <strong>Plant:</strong>
-  <%= @plant.plant %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @plant.type %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@plant.picture_url, :width => 600) if @plant.picture.present? %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @plant.location %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @plant.date %>
-</p>
-
-<%= link_to 'Edit', edit_plant_path(@plant) %> |
-<%= link_to 'Back', plants_path %>
+      <div class="col-md-3">
+    <p><b>Name: </b><%= @plant.name %></p>
+    <p><b>Description: </b><%= @plant.description %></p>
+    <p>
+      <%= link_to 'Edit', edit_plant_path(@plant) %> |
+      <%= link_to 'Destroy', @plant, data: { confirm: 'Are you sure?' }, method: :delete %> |
+      <%= link_to 'Back', plants_path %>
+    </p>
+  </div>
+</div>
